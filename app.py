@@ -10,7 +10,8 @@ import os
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-if 'API_USER_PASSWORD' not in os.environ:
+password = None
+if 'API_USER_PASSWORD' not in os.environ or  not os.environ['API_USER_PASSWORD']:
     password = 'masterkey'
 else:
     password = os.environ['API_USER_PASSWORD']

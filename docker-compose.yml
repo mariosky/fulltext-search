@@ -7,6 +7,8 @@ services:
         environment:
            REDIS_HOST: redis
            PYTHONUNBUFFERED: 1
+           API_USER_PASSWORD: ${API_USER_PASSWORD}
+
         volumes:
            - .:/code
         depends_on:
