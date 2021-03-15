@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_httpauth import HTTPBasicAuth
+from flaskr.title_search import get_title_content
 from werkzeug.security import generate_password_hash, check_password_hash
 from redisearch import Client, Query, TextField, IndexDefinition
 import redis
@@ -34,6 +35,15 @@ print("redis alive")
 client = Client("myIdx", conn=r)
 
 
+def get_parameters():
+    request_data = request.get_json()
+
+    url = request_data['url']
+    title = request_data['title']
+    body = request_data['body']
+
+    return url, title, body
+
 
 
 @auth.verify_password
@@ -55,12 +65,7 @@ def index():
 @app.route('/add-document', methods=['POST'])
 @auth.login_required
 def add_document():
-    request_data = request.get_json()
-
-    url = request_data['url']
-    title = request_data['title']
-    body = request_data['body']
-
+    url, title, body = get_parameters()
     client.redis.hset(
         'url:'+url,
         mapping={
@@ -68,7 +73,24 @@ def add_document():
             'body': body,
         })
 
-    # client.add_document_hash('doc1')
+    return '''
+               The title  is: {}
+               The body value is: {}'''.format(title, body)
+
+
+@app.route('/add-md-document', methods=['POST'])
+@auth.login_required
+def add_documents():
+    url, title, body = get_parameters()
+
+    content = get_title_content(body)
+    for key in content:
+        client.redis.hset(
+            'url:'+url+key,
+            mapping={
+                'title': title,
+                'body': " ".join(content[key]),
+            })
 
     return '''
                The title  is: {}
@@ -91,6 +113,8 @@ def query_redis():
               'duration': res.duration}
 
     return json.dumps(result)
+
+
 
 
 if __name__ == '__main__':

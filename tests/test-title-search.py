@@ -156,31 +156,10 @@ También debemos pensar si pudimos extraer algún conocimiento nuevo. ¿Es útil
 <a id="user-content-atención-estudiantes" class="anchor" href="#atenci%C3%B3n-estudiantes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Atención estudiantes:</h4>
 <p>Si te fijas el proceso de KDD también puede ser utilizado como guía para hacer  proyectos de investigación en el área. El proceso es el mismo pero cambian los algoritmos, aplicaciones y tipos de datos.</p>
 """
-from bs4 import BeautifulSoup
+
 soup = BeautifulSoup(html, 'html.parser')
 
-titles = [link for link in soup.find_all('a') if link.get('href') and link.get('href')[0] == "#" ]
-documento = {}
 
-for i,current_element in enumerate(titles):
-    # Los links están dentro de un header, avanzamos a nivel del header
-    header = current_element.parent
-    href = header.a.get('href')
-    documento[href] = []
-    if i < len(titles)-1:
-        while ( header != titles[i+1].parent):
-            if hasattr(header, 'get_text') and header.get_text():
-                documento[href].append(header.get_text())
-            header =  header.next_sibling
-    else:
-        while (header.next_sibling):
-            if hasattr(header, 'get_text') and header.get_text():
-                documento[href].append(header.get_text())
-            header =  header.next_sibling
-
-for href in documento:
-    print(href)
-    print(" ".join(documento[href]))
 
 
 
