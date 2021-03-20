@@ -64,15 +64,17 @@ def start(update: Update, _: CallbackContext) -> None:
 
 def help_command(update: Update, _: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
-    help_md = """" 
-    * Múltiples palabras, se separan con espacios: **foo** **bar** **baz**
-    * Para no incluir una palabra, se usa un guión: **-palabra**
-    * Palabras exactas entre comillas: "Hola Mundo"
-    * Operador *OR*, se separan con el símbolo | : **este** | **otro**
-    * Palabras opcionales:  **palabra** **~opcional** 
+    help_md = """Múltiples palabras, se separan con espacios: *foo* *bar* *baz*
+    
+    Para no incluir una palabra se usa un guión: *-palabra*
+    
+    Palabras exactas entre comillas: "Hola Mundo"
+    
+    Operador *OR*, se separan con el símbolo | : *este* | *otro*
+    
+    Palabras opcionales:  *palabra* *~opcional* 
     """
-    update.message.reply_markdown( 'Puedes poner una lista de palabras para buscar. \
-    Si deseas que una palabra no aparezca agrega un guión así: -palabra')
+    update.message.reply_markdown(help_md)
 
 
 def echo(update: Update, _: CallbackContext) -> None:
