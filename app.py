@@ -108,7 +108,7 @@ def query_redis():
     res = client.search(q)
 
     # Process documents
-    result = {'documents': [{'url': doc.id, 'body': doc.body[:40], 'title':doc.title} for doc in res.docs],
+    result = {'documents': [{'url': doc.id, 'body': doc.body[:128], 'title':doc.title} for doc in res.docs],
               'total': res.total,
               'duration': res.duration}
 
