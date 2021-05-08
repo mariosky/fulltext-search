@@ -21,7 +21,7 @@ users = {
     "user": generate_password_hash(password),
 }
 
-r = redis.StrictRedis(host=os.environ['REDIS_HOST'], port=6380, db=0)
+r = redis.StrictRedis(host=os.environ['REDIS_HOST'], port=6379, db=0)
 
 redis_ready = False
 while not redis_ready:
