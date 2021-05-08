@@ -16,6 +16,5 @@ services:
         command: python app.py
     redisearch:
         image: redislabs/redisearch:latest
-        command: --port 6380
         ports:
             - "6380:6380"
