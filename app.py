@@ -4,6 +4,7 @@ from flaskr.title_search import get_title_content
 from werkzeug.security import generate_password_hash, check_password_hash
 from redisearch import Client, Query, TextField, IndexDefinition
 import redis
+from redis import ResponseError
 import json
 import time
 import os
@@ -56,10 +57,15 @@ def verify_password(username, password):
 @app.route('/')
 @auth.login_required
 def index():
-    definition = IndexDefinition(prefix=['url:'])
-    client.create_index((TextField("title", weight=5.0), TextField("body")), definition=definition)
+    info = ''
+    try:
+        info = client.info()
+    except ResponseError:
+        definition = IndexDefinition(prefix=['url:'])
+        client.create_index((TextField("title", weight=5.0), TextField("body")), definition=definition)
+        return "Hello, {} Index Created".format(auth.current_user())
 
-    return "Hello, {} Index Created".format(auth.current_user())
+    return "Hello, {} Index Created:{}".format(auth.current_user(), info)
 
 
 @app.route('/add-document', methods=['POST'])
