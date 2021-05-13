@@ -8,7 +8,11 @@ Type=simple
 Restart=always
 RestartSec=1
 User=sbot
-Environment="TELEGRAM_TOKEN=ThisIsAnExampleToken551267712"
+Environment="TELEGRAM_TOKEN=1714341964:AAFQNLpTEdrTsukBu1v46COVu0McvBJS_LA"
+Environment="SEARCH_HOST=example.com"
+Environment="API_USER_PASSWORD=password-example"
+
+
 ExecStart=/usr/bin/python3 /home/fullttext-search/bot/search_bot.py
 StandardInput=tty-force
 
