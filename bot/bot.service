@@ -1,0 +1,16 @@
+[Unit]
+Description=Bot Service Example
+After=multi-user.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=sbot
+Environment="TELEGRAM_TOKEN=ThisIsAnExampleToken551267712"
+ExecStart=/usr/bin/python3 /home/fullttext-search/bot/search_bot.py
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target
