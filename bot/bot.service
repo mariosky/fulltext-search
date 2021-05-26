@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=sbot
-Environment="TELEGRAM_TOKEN=1714341964:AAFQNLpTEdrTsukBu1v46COVu0McvBJS_LA"
+Environment="TELEGRAM_TOKEN=1tokenexample"
 Environment="SEARCH_HOST=example.com"
 Environment="API_USER_PASSWORD=password-example"
 
