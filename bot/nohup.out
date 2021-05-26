@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "search_bot.py", line 112, in <module>
+    main()
+  File "search_bot.py", line 88, in main
+    updater = Updater(os.environ['TELEGRAM_TOKEN'])
+  File "/usr/lib/python3.8/os.py", line 675, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'TELEGRAM_TOKEN'
+Traceback (most recent call last):
+  File "search_bot.py", line 112, in <module>
+    main()
+  File "search_bot.py", line 88, in main
+    updater = Updater(os.environ['TELEGRAM_TOKEN'])
+  File "/usr/lib/python3.8/os.py", line 675, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'TELEGRAM_TOKEN'

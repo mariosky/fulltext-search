@@ -6,6 +6,7 @@ import requests
 import re
 import os
 import json
+import environ
 
 
 # Enable logging
@@ -13,6 +14,14 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
 
+env = environ.Env()
+
+
+TELEGRAM_TOKEN= env('TELEGRAM_TOKEN') 
+SEARCH_HOST=env('SEARCH_HOST')
+API_USER_PASSWORD=env('API_USER_PASSWORD')
+
+print(TELEGRAM_TOKEN, SEARCH_HOST, API_USER_PASSWORD)
 logger = logging.getLogger(__name__)
 
 # Define a few command handlers. These usually take the two arguments update and
